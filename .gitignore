@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+.idea
+packages/**/dist/
+packages/**/libs/
+packages/**/es/
+packages/**/node_modules
+dist/
+coverage
+.temp
