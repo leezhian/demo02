@@ -1,5 +1,15 @@
 # @kim/demo-a
 
+## 2.2.0
+
+### Minor Changes
+
+getReleaseLine
+
+### Patch Changes
+
+getDependencyReleaseLine
+
 ## 2.1.0
 
 ### Minor Changes
