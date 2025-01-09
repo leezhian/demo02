@@ -1,5 +1,11 @@
 # @kim/demo-a
 
+## 2.0.0
+
+### Major Changes
+
+- d0fd798:
+
 ## 1.1.0
 
 ### Minor Changes
