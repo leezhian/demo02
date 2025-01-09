@@ -2,9 +2,9 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
   "changelog": [
     "@changesets/changelog-git",
-    {}
+    { "repo": "leezhian/demo" }
   ],
-  "commit": true,
+  "commit": false,
   "fixed": [],
   "linked": [],
   "access": "restricted",
