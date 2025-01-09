@@ -1,10 +1,11 @@
 {
   "name": "mono-demo",
-  "version": "1.0.0",
+  "version": "1.1.0-beta.0",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "beta": "standard-version --prerelease beta"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
     "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.11"
+    "@changesets/cli": "^2.27.11",
+    "standard-version": "^9.5.0"
   }
 }
