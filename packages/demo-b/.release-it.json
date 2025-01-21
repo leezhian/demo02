@@ -1,6 +1,15 @@
 {
   "git": {
-    "requireCleanWorkingDir": false
+    "commitMessage": "chore: release v${version}",
+    "tagName": "${branchName}@${version}",
+    "requireCleanWorkingDir": false,
+    "push": true
+  },
+  "npm": {
+    "publish": true,
+    "publishConfig": {
+      "access": "public"
+    }
   },
   "plugins": {
     "@release-it/conventional-changelog": {
@@ -9,5 +18,9 @@
       },
       "infile": "CHANGELOG.md"
     }
+  },
+  "hooks": {
+    "before:init": ["pnpm build"],
+    "after:release": "echo '✨ Successfully released ${name} v${version} to npm.'"
   }
 }

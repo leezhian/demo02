@@ -1,6 +1,6 @@
 {
   "name": "kim-demo-a",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
@@ -9,7 +9,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "release-it --ci"
   },
   "dependencies": {
     "react": "^18.3.1",
