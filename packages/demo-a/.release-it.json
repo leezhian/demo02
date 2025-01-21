@@ -12,7 +12,6 @@
     }
   },
   "plugins": {
-    "release-it-pnpm": {},
     "@release-it/conventional-changelog": {
       "preset": {
         "name": "angular"

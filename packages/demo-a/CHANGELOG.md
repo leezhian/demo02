@@ -1,5 +1,7 @@
 # Changelog
 
+# [0.1.0](https://github.com/leezhian/demo/compare/main@0.0.1...${branchName}@0.1.0) (2025-01-21)
+
 ## 0.0.1 (2025-01-21)
 
 
