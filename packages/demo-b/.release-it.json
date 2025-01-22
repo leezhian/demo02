@@ -12,11 +12,8 @@
     }
   },
   "plugins": {
-    "@release-it/conventional-changelog": {
-      "preset": {
-        "name": "angular"
-      },
-      "infile": "CHANGELOG.md"
+    "release-it-pnpm": {
+      "disableRelease": true
     }
   },
   "hooks": {
