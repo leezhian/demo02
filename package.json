@@ -6,7 +6,7 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postPublish": "pnpm --filter kim-demo-a run release"
+    "postPublish": "node scripts/release.js"
   },
   "keywords": [],
   "author": "",
@@ -15,9 +15,10 @@
   "devDependencies": {
     "@release-it/bumper": "^7.0.1",
     "@release-it/conventional-changelog": "^10.0.0",
+    "chalk": "^4.1.2",
     "conventional-changelog-cli": "^5.0.0",
     "conventional-changelog-core": "^8.0.0",
-    "release-it": "^18.1.1",
-    "release-it-pnpm": "^4.6.4"
+    "execa": "^5.1.1",
+    "release-it": "^18.1.1"
   }
 }

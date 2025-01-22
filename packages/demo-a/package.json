@@ -10,7 +10,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "release": "release-it --ci"
+    "release": "release-it"
   },
   "dependencies": {
     "react": "^18.3.1",
