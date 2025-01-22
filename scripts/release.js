@@ -73,9 +73,18 @@ function getPublishOrder(graph) {
 // 获取变更的包
 async function getChangedPackages() {
   try {
-    const { stdout } = await execa('git', ['diff', '--name-only', 'HEAD~1', 'HEAD']);
-    const files = stdout.split('\n');
-    console.log(files);
+    // 获取最近的版本标签
+    const { stdout: lastTag } = await execa('git', ['describe', '--tags', '--abbrev=0']);
+    console.log(`Last version tag: ${lastTag}`);
+
+    // 获取变更的文件列表
+    const { stdout: changedFiles } = await execa('git', ['diff', '--name-only', lastTag, 'HEAD']);
+    const files = changedFiles.split('\n').filter(Boolean);
+
+    console.log('Files changed since last version:', files);
+    // const { stdout } = await execa('git', ['diff', '--name-only', 'HEAD~1', 'HEAD']);
+    // const files = stdout.split('\n');
+    // console.log(files);
     const packageDirs = new Set();
 
     files.forEach(file => {

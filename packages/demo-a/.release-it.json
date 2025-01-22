@@ -6,7 +6,7 @@
     "push": true
   },
   "npm": {
-    "publish": true,
+    "publish": false,
     "publishConfig": {
       "access": "public"
     }
@@ -16,14 +16,7 @@
       "preset": "angular",
       "infile": "CHANGELOG.md",
       "ignoreRecommendedBump": false,
-      "parserOpts": {
-        "headerPattern": "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$",
-        "headerCorrespondence": [
-          "type",
-          "scope",
-          "subject"
-        ]
-      }
+      "path": "."
     }
   },
   "hooks": {
