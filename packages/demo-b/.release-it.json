@@ -6,13 +6,18 @@
     "push": true
   },
   "npm": {
-    "publish": true,
+    "publish": false,
     "publishConfig": {
       "access": "public"
     }
   },
   "plugins": {
-    
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md",
+      "ignoreRecommendedBump": false,
+      "path": "."
+    }
   },
   "hooks": {
     "before:init": ["pnpm build"],
