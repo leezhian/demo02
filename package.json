@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postPublish": "node scripts/release.js",
-    "postPublish1": "pnpm -r release --ci --preRelease=beta"
+    "postPublish1": "pnpm -r release --ci --preRelease=beta && release-it"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +23,18 @@
     "execa": "^5.1.1",
     "pacote": "^21.0.0",
     "release-it": "^18.1.1"
+  },
+  "release-it": {
+    "increment": "false",
+    "git": {
+      "commitMessage": "chore: release v${version}",
+      "tagName": "${repo.project}-${version}",
+      "requireCleanWorkingDir": false,
+      "commitsPath": ".",
+      "requireCommits": true,
+      "requireCommitsFail": false,
+      "push": true
+    },
+    "ci": true
   }
 }
