@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.1.0-beta.2](https://github.com/leezhian/demo02/compare/kim-demo-b1-v0.1.0-beta.1...${npm.name}-v0.1.0-beta.2) (2025-02-05)
+
+
+### Features
+
+* b ([2eec5db](https://github.com/leezhian/demo02/commit/2eec5db4615151a6e4fa6b49840f0cefb38fdb50))
+
 # [0.1.0-beta.1](https://github.com/leezhian/demo02/compare/kim-demo-b1-v0.1.0-beta.0...${npm.name}-v0.1.0-beta.1) (2025-02-05)
 
 # 0.1.0-beta.0 (2025-02-05)
