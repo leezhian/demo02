@@ -13,8 +13,7 @@
     "release": "release-it"
   },
   "peerDependencies": {
-    "kim-demo-a1": "0.1.0-beta.4",
-    "kim-demo-a": "0.1.0-beta.2"
+    "kim-demo-a1": "*"
   },
   "dependencies": {
     "react": "^18.3.1",
