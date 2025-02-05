@@ -1,6 +1,6 @@
 {
   "name": "kim-demo-b1",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.0",
   "type": "module",
   "files": [
     "dist"
@@ -13,7 +13,8 @@
     "release": "release-it"
   },
   "peerDependencies": {
-    "kim-demo-a1": "*"
+    "kim-demo-a1": "*",
+    "kim-demo-a": "0.1.0-beta.0"
   },
   "dependencies": {
     "react": "^18.3.1",
