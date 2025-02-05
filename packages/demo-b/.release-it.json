@@ -1,7 +1,7 @@
 {
   "git": {
     "commitMessage": "chore: release v${version}",
-    "tagName": "${branchName}@${version}",
+    "tagName": "v${version}",
     "requireCleanWorkingDir": false,
     "push": true
   },
@@ -16,7 +16,9 @@
       "preset": "angular",
       "infile": "CHANGELOG.md",
       "ignoreRecommendedBump": false,
-      "path": "."
+      "gitRawCommitsOpts": {
+        "path": "."
+      }
     }
   },
   "hooks": {
