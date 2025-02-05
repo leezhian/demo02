@@ -167,7 +167,9 @@ async function main() {
     console.log(chalk.blue('Changed packages:'), changedPackages);
 
     const { Bumper } = await import('conventional-recommended-bump');
-    const bumper = new Bumper(path.join(packagesDir, 'demo-b')).loadPreset('angular')
+    const bumper = new Bumper(path.join(packagesDir, 'demo-b')).commits({
+      path: path.join(packagesDir, 'demo-b'),
+    }).loadPreset('angular')
     const recommendation = await bumper.bump()
     console.log(recommendation);
     // console.log(chalk.blue('Publish order:'), publishOrder);
