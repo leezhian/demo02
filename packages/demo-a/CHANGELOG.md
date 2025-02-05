@@ -1,5 +1,7 @@
 # Changelog
 
+# [0.1.0-beta.1](https://github.com/leezhian/demo02/compare/kim-demo-a1-v0.1.0-beta.0...${npm.name}-v0.1.0-beta.1) (2025-02-05)
+
 # 0.1.0-beta.0 (2025-02-05)
 
 
