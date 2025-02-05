@@ -26,7 +26,7 @@
     "@release-it/bumper": {
       "out": {
         "file": "package.json",
-        "path": ["peerDependencies.kim-demo-a"]
+        "path": ["peerDependencies.kim-demo-a1"]
       }
     }
   },
