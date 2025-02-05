@@ -15,12 +15,7 @@ async function getLatestVersions(packageName, limit) {
     const manifest = await pacote.manifest(packageName, options);
     const versions = await pacote.packument(packageName, options);
     
-    const allVersions = Object.keys(versions.versions)
-      .sort((a, b) => {
-        const aTime = versions.versions[a].time;
-        console.log(aTime);
-        return versions.versions[a].time - versions.versions[b].time
-      });
+    const allVersions = Object.keys(versions.versions).reverse();
     
     return {
       latest: manifest.version,

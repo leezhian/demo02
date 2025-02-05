@@ -1,9 +1,10 @@
 {
   "git": {
     "commitMessage": "chore: release v${version}",
-    "tagName": "v${version}",
+    "tagName": "${npm.name}-v${version}",
     "requireCleanWorkingDir": false,
-    "push": false
+    "commitsPath": ".",
+    "push": true
   },
   "npm": {
     "publish": false,
