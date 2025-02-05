@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const execa = require('execa');
 const chalk = require('chalk');
-const { getLatestVersions } = require('./version');
+// const { getLatestVersions } = require('./version');
 // const semver = require('semver');
 
 const packagesDir = path.resolve(__dirname, '../packages');
@@ -159,13 +159,17 @@ async function main() {
     // 获取变更的包
     const changedPackages = await getChangedPackages();
 
-    console.log(await getLatestVersions('kim-demo-a', 20));
     if (changedPackages.length <= 0) {
       console.log(chalk.yellow('No packages have changed.'));
       return;
     }
 
     console.log(chalk.blue('Changed packages:'), changedPackages);
+
+    const { Bumper } = await import('conventional-recommended-bump');
+    const bumper = new Bumper(path.join(packagesDir, 'demo-b')).loadPreset('angular')
+    const recommendation = await bumper.bump()
+    console.log(recommendation);
     // console.log(chalk.blue('Publish order:'), publishOrder);
 
     // // 按依赖顺序发布包

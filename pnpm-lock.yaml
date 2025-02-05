@@ -23,6 +23,9 @@ importers:
       conventional-changelog-core:
         specifier: ^8.0.0
         version: 8.0.0(conventional-commits-filter@5.0.0)
+      conventional-recommended-bump:
+        specifier: ^10.0.0
+        version: 10.0.0
       execa:
         specifier: ^5.1.1
         version: 5.1.1
