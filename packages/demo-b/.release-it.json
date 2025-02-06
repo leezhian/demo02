@@ -1,5 +1,12 @@
 {
-  "git": false,
+  "git": {
+    "tag": false,
+    "requireCleanWorkingDir": false,
+    "commitsPath": ".",
+    "requireCommits": true,
+    "requireCommitsFail": false,
+    "push": false
+  },
   "npm": {
     "publish": false,
     "publishConfig": {
