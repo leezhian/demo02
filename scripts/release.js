@@ -41,7 +41,7 @@ function getPublishOrder(graph) {
  */
 function isMainBranch() {
   try {
-    const currentBranch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf-8' });
+    const currentBranch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf-8' }).trim();
     const allowedBranches = ['main', 'master'];
 
     return allowedBranches.includes(currentBranch);
