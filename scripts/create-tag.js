@@ -39,7 +39,8 @@ async function createTag() {
   console.log(`📌 创建标签: ${tagName}`);
   
   console.log('📤 推送到远程...');
-  execSync('git push --tags');
+  execSync(`git push origin ${tagName}`);
+  execSync('git push');
 
   console.log('✨ 提交完成！');
 }
