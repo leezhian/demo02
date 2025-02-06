@@ -1,5 +1,13 @@
 # Changelog
 
+# [0.1.0-beta.9](https://github.com/leezhian/demo02/compare/mono-demo@1.0.0-250206105654...0.1.0-beta.9) (2025-02-06)
+
+
+### Features
+
+* 修改脚本 ([e835725](https://github.com/leezhian/demo02/commit/e8357256b5bc9ef6831058c58e4ae404f17ad95e))
+* 修改脚本 ([eb68e5d](https://github.com/leezhian/demo02/commit/eb68e5dd4e3896623ebfa8725a5bca8eefa3988e))
+
 # [0.1.0-beta.8](https://github.com/leezhian/demo02/compare/0.0.2...0.1.0-beta.8) (2025-02-06)
 
 
