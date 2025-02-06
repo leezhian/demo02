@@ -1,6 +1,23 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+/** 依赖类型 */
+const DEPENDENCY_TYPES = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+];
+
+/**
+ * 读取 package.json 文件
+ * @param {string} dirPath 目录路径
+ */
+function readPkgJson(dirPath) {
+  const pkgPath = path.join(dirPath, 'package.json');
+  if (!fs.existsSync(pkgPath)) return null;
+  return JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+}
+
 /**
  * 获取包的名称和版本
  */
@@ -8,13 +25,12 @@ function getPkgNameAndVersion(dirPath) {
   if(typeof dirPath !== 'string') {
     throw new Error('dirPath must be a string');
   }
-  const pkgPath = path.join(dirPath, 'package.json');
+  const packageJsonInfo = readPkgJson(dirPath);
   const packageInfo = {}
-  if (!fs.existsSync(pkgPath)) return packageInfo;
+  if (!packageJsonInfo) return packageInfo;
 
-  const pkgJson = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-  packageInfo.name = pkgJson.name;
-  packageInfo.version = pkgJson.version;
+  packageInfo.name = packageJsonInfo.name;
+  packageInfo.version = packageJsonInfo.version;
 
   return packageInfo;
 }
@@ -38,7 +54,37 @@ function getPkgVersionMap(dirPaths) {
   return graph;
 }
 
+/**
+ * 获取包的依赖关系图
+ * @returns Map<packageName, [dependencies]>
+ */
+function getDependencyGraph(packagePrefix, dirPaths) {
+  const graph = new Map();
+
+  for (const pkg of dirPaths) {
+    const pkgJson = readPkgJson(pkg);
+    if (pkgJson) {
+      const deps = new Set();
+
+      // 分析依赖项
+      DEPENDENCY_TYPES.forEach((type) => {
+        const dependencies = pkgJson[type] || {};
+        Object.keys(dependencies).forEach((dep) => {
+          if (dep.startsWith(packagePrefix)) {
+            deps.add(dep);
+          }
+        });
+      });
+
+      graph.set(pkgJson.name, Array.from(deps));
+    }
+  }
+
+  return graph;
+}
+
 module.exports = {
   getPkgNameAndVersion,
   getPkgVersionMap,
+  getDependencyGraph,
 };

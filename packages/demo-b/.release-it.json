@@ -21,12 +21,6 @@
       "gitRawCommitsOpts": {
         "path": "."
       }
-    },
-    "@release-it/bumper": {
-      "out": {
-        "file": "123",
-        "path": ["peerDependencies.kim-demo-a1"]
-      }
     }
   },
   "hooks": {

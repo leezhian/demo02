@@ -1,27 +1,21 @@
 const { execSync } = require('node:child_process');
-const { getPkgVersionMap, getPkgNameAndVersion } = require('./package');
-
-const NPM_PACKAGES = ['packages/demo-a', 'packages/demo-b'];
-
-/**
- * 执行命令
- * @param {string} command
- */
-function execute(command) {
-  try {
-    return execSync(command, { encoding: 'utf-8' });
-  } catch (error) {
-    console.error(`执行命令失败: ${command}`);
-    return false;
-  }
-}
+const { getPkgNameAndVersion } = require('./package');
 
 /**
  * 检查是否有未提交的更改
  */
-function hasChanges() {
-  const status = execute('git status --porcelain');
-  return status && status.length > 0;
+function checkIfChanged(dirPaths) {
+  const status = execSync('git status --porcelain', { encoding: 'utf-8' });
+  if(status.length <= 0) {
+    return false;
+  }
+
+  const changedFiles = status.split('\n').filter(Boolean);
+  return changedFiles.some(file => {
+    return dirPaths.some(pkg => {
+      return file.includes(pkg)
+    })
+  })
 }
 
 /**
@@ -39,14 +33,21 @@ function getTimeString() {
   return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
 
-async function main() {
+async function autoCommit(dirPaths) {
   // 首先检查是否有更改
-  if (!hasChanges()) {
+  if (!checkIfChanged(dirPaths)) {
     console.log('📝 没有检测到文件更改，跳过提交');
     return;
   }
 
-  const npmPkgVersions = getPkgVersionMap(NPM_PACKAGES);
+  const npmPkgVersions = dirPaths.reduce((acc, pkg) => {
+    const pkgInfo = getPkgNameAndVersion(pkg);
+    if (pkgInfo.name && pkgInfo.version) {
+      acc[pkgInfo.name] = pkgInfo.version;
+    }
+    return acc;
+  }, {});
+
   const defaultMessage = `chore: release ${Object.keys(npmPkgVersions).map(name => `${name}-v${npmPkgVersions[name]}`).join(' ')}`;
   const customMessage = process.argv[2];
   const commitMessage = customMessage 
@@ -56,27 +57,24 @@ async function main() {
   console.log('🚀 开始提交...');
 
   // 显示将要提交的文件
-  const changes = execute('git status --short');
+  const changes = execSync('git status --short', { encoding: 'utf-8' });
   console.log('\n要提交的文件:');
   console.log(changes);
 
   const rootPkgInfo = getPkgNameAndVersion('');
   const date = getTimeString();
 
-  execute('git add .');
-  execute(`git commit -m "${commitMessage}" --no-verify`);
+  execSync('git add .', { encoding: 'utf-8' });
+  execSync(`git commit -m "${commitMessage}" --no-verify`, { encoding: 'utf-8' });
   
   const tagName = `${rootPkgInfo.name}@${rootPkgInfo.version}-${date}`;
-  execute(`git tag ${tagName}`);
+  execSync(`git tag ${tagName}`, { encoding: 'utf-8' });
   console.log(`📌 创建标签: ${tagName}`);
   
   console.log('📤 推送到远程...');
-  execute('git push --follow-tags');
+  execSync('git push --follow-tags', { encoding: 'utf-8' });
 
   console.log('✨ 提交完成！');
 }
 
-main().catch(error => {
-  console.error('❌ 脚本执行失败:', error);
-  process.exit(1);
-});
+module.exports = autoCommit;
