@@ -1,0 +1,16 @@
+{
+  "name": "demo-c",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kim-demo-a1": "^0.4.0",
+    "kim-demo-b1": "^0.3.0"
+  }
+}
