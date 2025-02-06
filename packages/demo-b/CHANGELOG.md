@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.1.0-beta.11](https://github.com/leezhian/demo02/compare/mono-demo@1.0.0-250206134723...0.1.0-beta.11) (2025-02-06)
+
+
+### Features
+
+* 修改ab脚本 ([09ffc22](https://github.com/leezhian/demo02/commit/09ffc22ffc680e93db01e73cf0862f073e5b3e6d))
+
 # [0.1.0-beta.10](https://github.com/leezhian/demo02/compare/mono-demo@1.0.0-250206105654...0.1.0-beta.10) (2025-02-06)
 
 
