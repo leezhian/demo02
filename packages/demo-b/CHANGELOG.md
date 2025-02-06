@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.4.0](https://github.com/leezhian/demo02/compare/mono-demo@1.0.0-250206142748...0.4.0) (2025-02-06)
+
+
+### Features
+
+* b1 ([141b1b1](https://github.com/leezhian/demo02/commit/141b1b12e781e5e7a8593165ca261d39dda2e784))
+
 # [0.3.0](https://github.com/leezhian/demo02/compare/mono-demo@1.0.0-250206142511...0.3.0) (2025-02-06)
 
 
