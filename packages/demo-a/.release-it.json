@@ -26,6 +26,6 @@
   },
   "hooks": {
     "after:bump": ["pnpm build"],
-    "after:release": ["echo '✨ Successfully released ${name} v${version} to npm.'"]
+    "after:release": ["pnpm publish --no-git-checks", "echo '✨ Successfully released ${name} v${version} to npm.'"]
   }
 }

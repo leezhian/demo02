@@ -5,17 +5,6 @@ const { getPkgNameAndVersion } = require('./package');
  * 检查是否有未提交的更改
  */
 function checkIfChanged() {
-  // const status = execSync('git status --porcelain', { encoding: 'utf-8' });
-  // if(status.length <= 0) {
-  //   return false;
-  // }
-
-  // const changedFiles = status.split('\n').filter(Boolean);
-  // return changedFiles.some(file => {
-  //   return dirPaths.some(pkg => {
-  //     return file.includes(pkg)
-  //   })
-  // })
   const log = execSync('git log @{u}..HEAD --oneline', { encoding: 'utf-8' })
   return log.length > 0;
 }
@@ -35,46 +24,22 @@ function getTimeString() {
   return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
 
-async function autoCommit(dirPaths) {
+async function autoCommit() {
   // 首先检查是否有更改
   if (!checkIfChanged()) {
     console.log('📝 没有检测到文件更改，跳过提交');
     return;
   }
 
-  // const npmPkgVersions = dirPaths.reduce((acc, pkg) => {
-  //   const pkgInfo = getPkgNameAndVersion(pkg);
-  //   if (pkgInfo.name && pkgInfo.version) {
-  //     acc[pkgInfo.name] = pkgInfo.version;
-  //   }
-  //   return acc;
-  // }, {});
-
-  // const defaultMessage = `chore: release ${Object.keys(npmPkgVersions).map(name => `${name}-v${npmPkgVersions[name]}`).join(' ')}`;
-  // const customMessage = process.argv[2];
-  // const commitMessage = customMessage 
-  //   ? `${customMessage}`
-  //   : defaultMessage;
-
-  console.log('🚀 开始提交...');
-
-  // 显示将要提交的文件
-  // const changes = execSync('git status --short', { encoding: 'utf-8' });
-  // console.log('\n要提交的文件:');
-  // console.log(changes);
-
   const rootPkgInfo = getPkgNameAndVersion('');
   const date = getTimeString();
-
-  // execSync('git add .', { encoding: 'utf-8' });
-  // execSync(`git commit -m "${commitMessage}" --no-verify`, { encoding: 'utf-8' });
   
   const tagName = `${rootPkgInfo.name}@${rootPkgInfo.version}-${date}`;
-  execSync(`git tag ${tagName}`, { encoding: 'utf-8' });
+  execSync(`git tag ${tagName}`);
   console.log(`📌 创建标签: ${tagName}`);
   
   console.log('📤 推送到远程...');
-  execSync('git push origin --follow-tags', { encoding: 'utf-8' });
+  execSync('git push origin --follow-tags --no-verify');
 
   console.log('✨ 提交完成！');
 }
