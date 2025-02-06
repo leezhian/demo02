@@ -67,7 +67,7 @@ async function main() {
     const publishOrder = getPublishOrder(graph);
 
     for (const pkg of publishOrder) {
-      releasePackage(pkg, !isMainBranch());
+      releasePackage(pkg, true);
     }
 
     // 打 tag 提交
