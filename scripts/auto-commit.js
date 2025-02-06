@@ -72,7 +72,7 @@ async function autoCommit(dirPaths) {
   console.log(`📌 创建标签: ${tagName}`);
   
   console.log('📤 推送到远程...');
-  execSync('git push --follow-tags', { encoding: 'utf-8' });
+  execSync('git push origin --follow-tags', { encoding: 'utf-8' });
 
   console.log('✨ 提交完成！');
 }

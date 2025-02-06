@@ -41,7 +41,7 @@ function getPublishOrder(graph) {
  * @param {string} pkg 包名
  */
 function releasePackage(pkg) {
-  execSync(`pnpm --filter ${pkg} release --ci --preRelease=beta`, { encoding: 'utf-8' });
+  execSync(`pnpm --filter ${pkg} release --ci --preRelease=beta`, { stdio: 'inherit', encoding: 'utf-8' });
 }
 
 async function main() {

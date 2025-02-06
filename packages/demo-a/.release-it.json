@@ -1,5 +1,6 @@
 {
   "git": {
+    "commitMessage": "chore: release ${npm.name}@${version}",
     "tag": false,
     "requireCleanWorkingDir": false,
     "commitsPath": ".",
