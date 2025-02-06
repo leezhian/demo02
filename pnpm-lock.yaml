@@ -78,9 +78,9 @@ importers:
 
   packages/demo-b:
     dependencies:
-      kim-demo-a:
-        specifier: '*'
-        version: 0.1.2
+      kim-demo-a1:
+        specifier: ^*
+        version: 0.4.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -118,6 +118,15 @@ importers:
       vite:
         specifier: ^6.0.5
         version: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(yaml@2.7.0)
+
+  packages/demo-c:
+    dependencies:
+      kim-demo-a1:
+        specifier: ^0.4.0
+        version: 0.4.0
+      kim-demo-b1:
+        specifier: ^0.3.0
+        version: 0.3.0(kim-demo-a1@0.4.0)
 
 packages:
 
@@ -1925,8 +1934,13 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  kim-demo-a@0.1.2:
-    resolution: {integrity: sha512-9P+z1BKcwo9dlVOpcwju8G78fiu3J2FCuHDgFtZO4nCGnAJyq6vALsYf/0+9L09k6Cg+jHUBqoYNQ1EJTH2foQ==}
+  kim-demo-a1@0.4.0:
+    resolution: {integrity: sha512-MN6hkiZUCUwvF9TkWbM7eefznqH1zf1YZErpUK9SY5cy/tnL+Ajuu8ncNWMnUKPCarB0upbDu5es2okoiXez/w==}
+
+  kim-demo-b1@0.3.0:
+    resolution: {integrity: sha512-vP8DD0rR2D8kX79257YOUUGz4bC+dyseQMnFO5/OVWU776vpQ52W6FdTVJvAT3gSupwxJGz5uVF9dFci56U5hw==}
+    peerDependencies:
+      kim-demo-a1: ^*
 
   ky@1.7.4:
     resolution: {integrity: sha512-zYEr/gh7uLW2l4su11bmQ2M9xLgQLjyvx58UyNM/6nuqyWFHPX5ktMjvpev3F8QWdjSsHUpnWew4PBCswBNuMQ==}
@@ -4950,8 +4964,14 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kim-demo-a@0.1.2:
+  kim-demo-a1@0.4.0:
     dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  kim-demo-b1@0.3.0(kim-demo-a1@0.4.0):
+    dependencies:
+      kim-demo-a1: 0.4.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
