@@ -2,14 +2,6 @@ const { execSync } = require('node:child_process');
 const { getPkgNameAndVersion } = require('./package');
 
 /**
- * 检查是否有未提交的更改
- */
-function checkIfChanged() {
-  const log = execSync('git log @{u}..HEAD --oneline', { encoding: 'utf-8' })
-  return log.length > 0;
-}
-
-/**
  * 获取时间字符串
  */
 function getTimeString() {
@@ -24,7 +16,15 @@ function getTimeString() {
   return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
 
-async function autoCommit() {
+/**
+ * 检查是否有未提交的更改
+ */
+function checkIfChanged() {
+  const log = execSync('git log @{u}..HEAD --oneline', { encoding: 'utf-8' })
+  return log.length > 0;
+}
+
+async function createTag() {
   // 首先检查是否有更改
   if (!checkIfChanged()) {
     console.log('📝 没有检测到文件更改，跳过提交');
@@ -39,9 +39,9 @@ async function autoCommit() {
   console.log(`📌 创建标签: ${tagName}`);
   
   console.log('📤 推送到远程...');
-  execSync('git push origin --follow-tags --no-verify');
+  execSync('git push --tags');
 
   console.log('✨ 提交完成！');
 }
 
-module.exports = autoCommit;
+module.exports = createTag;

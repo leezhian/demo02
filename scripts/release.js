@@ -1,7 +1,7 @@
 const { execSync } = require('node:child_process');
 const chalk = require('chalk');
 const { getDependencyGraph } = require('./package');
-const autoCommit = require('./auto-commit');
+const createTag = require('./create-tag');
 
 /** 包前缀 */
 const PACKAGE_PREFIX = 'kim-demo-';
@@ -37,11 +37,27 @@ function getPublishOrder(graph) {
 }
 
 /**
+ * 检查是否在主分支上
+ */
+function isMainBranch() {
+  try {
+    const currentBranch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf-8' });
+    const allowedBranches = ['main', 'master'];
+
+    return allowedBranches.includes(currentBranch);
+  } catch (error) {
+    console.error('❌ 检查分支失败:', error);
+    return false;
+  }
+}
+
+/**
  * 发布包
  * @param {string} pkg 包名
+ * @param {boolean} isPreRelease 是否为预发布
  */
-function releasePackage(pkg) {
-  execSync(`pnpm --filter ${pkg} release --ci --preRelease=beta`, { stdio: 'inherit', encoding: 'utf-8' });
+function releasePackage(pkg, isPreRelease = false) {
+  execSync(`pnpm --filter ${pkg} release --ci ${isPreRelease ? '--preRelease=beta' : ''}`, { stdio: 'inherit', encoding: 'utf-8' });
 }
 
 async function main() {
@@ -51,11 +67,11 @@ async function main() {
     const publishOrder = getPublishOrder(graph);
 
     for (const pkg of publishOrder) {
-      releasePackage(pkg);
+      releasePackage(pkg, !isMainBranch());
     }
 
     // 打 tag 提交
-    autoCommit(NPM_PACKAGES);
+    createTag(NPM_PACKAGES);
   } catch (error) {
     console.error(chalk.red('Release failed:', error));
     process.exit(1);
