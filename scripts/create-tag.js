@@ -27,7 +27,7 @@ function checkIfChanged() {
 async function createTag() {
   // 首先检查是否有更改
   if (!checkIfChanged()) {
-    console.log('📝 没有检测到文件更改，跳过提交');
+    console.log('📝 没有检测到文件更改，跳过创建标签');
     return;
   }
 
@@ -42,7 +42,7 @@ async function createTag() {
   execSync(`git push origin ${tagName}`);
   execSync('git push');
 
-  console.log('✨ 提交完成！');
+  console.log('✨ 推送完成！');
 }
 
 module.exports = createTag;
